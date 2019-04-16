@@ -4,11 +4,9 @@ const MovingObject = require('./moving_object');
 Swinger.RADIUS = 15;
 function Swinger(options) {
   options.radius = Swinger.RADIUS;
-  options.vel = options.vel || [10, 10];
   options.color = "#EFEFEF";
-  // this.forward = true;
 
-  this.armLength = 200;
+  this.armLength = 150;
   //angular velocity
   this.aVelocity = 0.0;
   this.gravity = 0.4;
@@ -17,7 +15,7 @@ function Swinger(options) {
   this.aAccelleration = 0.0;
   this._type = 'swinging';
 
-  //For jump
+  //or fall
   this.velocity = [0.0, 0.0];
   this.accelleration = [0.0, 0.0];
   MovingObject.call(this, options);
@@ -26,42 +24,63 @@ function Swinger(options) {
 Util.inherits(Swinger, MovingObject);
 
 Swinger.prototype.jump = function jump() {
-  if(this._type === 'jumping'){
+  if(this._type === 'swinging'){
     this._type = 'falling';
   } else {
-    this._type = 'jumping';
-    this.jumpTime = new Date;
+    this._type = 'swinging';
   }
 };
 
-Swinger.prototype.move = function move(delta) {
-  this.getNextPos(delta);
+Swinger.prototype.move = function move(delta, stop) {
+  this.getNextPos(delta, stop);
 };
 
-Swinger.prototype.getNextPos = function updateFallingPos(timeDelta) {
+Swinger.prototype.getNextPos = function getNextPos(timeDelta, stop) {
   if (this._type === "falling") {
-    this.velocity = [this.velocity[0], this.velocity[1] + (this.gravity * timeDelta)/300];
+    //change the number at the end to speed up or slow down ball movement
+    this.velocity = [this.velocity[0], this.velocity[1] + (this.gravity * timeDelta)/100];
 
     this.pos = [
       this.pos[0] + this.velocity[0] * timeDelta,
       this.pos[1] + this.velocity[1] * timeDelta
     ];
+
     this.acceleration = 0.0;
   } else {
     //calculate accelleration
     this.aAccelleration = -(this.gravity / this.armLength) * Math.sin(this.angle);
     //increment velocity
     this.aVelocity += this.aAccelleration;
-    this.velocity[0] = -this.aVelocity * Math.sin((-Math.PI/2)+this.angle) * 20;
-    this.velocity[1] = -this.aVelocity * Math.cos((-Math.PI/2)+this.angle) * 20;
+
+    // change the number at the end to change the distance at which the ball
+    // moves after released from the swing
+    this.velocity[0] = -this.aVelocity * Math.sin((-Math.PI/2)+this.angle) * 24;
+    this.velocity[1] = -this.aVelocity * Math.cos((-Math.PI/2)+this.angle) * 24;
 
     //increment angle
     this.angle += this.aVelocity;
     this.pos = [
-      300 + (this.armLength * Math.sin(this.angle)),
+      250 + (this.armLength * Math.sin(this.angle)),
       100 + (this.armLength * Math.cos(this.angle))
     ];
   }
+};
+
+Swinger.prototype.draw = function draw(ctx) {
+  ctx.fillStyle = this.color;
+
+  ctx.beginPath();
+  if (this._type === "swinging") {
+    stroke(0, 0, 0);
+    strokeWeight(2);
+    // Draw the arm
+    line(this.origin.x, this.origin.y, this.position.x, this.position.y);
+    fill(175, 175, 175);
+  }
+  ctx.arc(
+    this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
+  );
+  ctx.fill();
 };
 
 module.exports = Swinger;
