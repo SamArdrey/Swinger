@@ -1,15 +1,15 @@
 const Swinger = require('./swinger');
+// const Platform = require('./platform');
 
 Game.BG_COLOR = "#000000";
 Game.DIM_X = 1000;
 Game.DIM_Y = 600;
 Game.FPS = 32;
-Game.NUM_ASTEROIDS = 10;
 
 function Game() {
-  this.swinger = new Swinger({
+  this.swinger = [new Swinger({
     game: this
-  });
+  })];
 }
 
 Game.prototype.draw = function draw(ctx) {
@@ -28,9 +28,13 @@ Game.prototype.step = function step(delta) {
 };
 
 Game.prototype.moveObjects = function moveObjects(delta) {
-  this.allObjects().forEach(function(object) {
+  this.allObjects().forEach(object => {
     object.move(delta);
   });
+};
+
+Game.prototype.allObjects = function allObjects() {
+  return [].concat(this.swinger);
 };
 
 module.exports = Game;

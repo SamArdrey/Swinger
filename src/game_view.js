@@ -4,7 +4,10 @@ function GameView(game, ctx) {
 }
 
 GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
-  key("space", function () { swing.jump(); });
+  let that = this;
+  key("space", function () {
+    that.game.swinger[0].jump();
+  });
 };
 
 GameView.prototype.start = function start() {
