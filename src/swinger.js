@@ -68,19 +68,21 @@ Swinger.prototype.getNextPos = function getNextPos(timeDelta, stop) {
 
 Swinger.prototype.draw = function draw(ctx) {
   ctx.fillStyle = this.color;
-
   ctx.beginPath();
-  if (this._type === "swinging") {
-    stroke(0, 0, 0);
-    strokeWeight(2);
-    // Draw the arm
-    line(this.origin.x, this.origin.y, this.position.x, this.position.y);
-    fill(175, 175, 175);
-  }
-  ctx.arc(
-    this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
-  );
+  ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true);
   ctx.fill();
+  
+  if (this._type === "swinging") this.drawLine(ctx);
+};
+
+Swinger.prototype.drawLine = function drawLine(ctx) {
+  ctx.beginPath();
+  // Draw the arm
+  ctx.moveTo(250, 0);
+  ctx.lineTo(this.pos[0], this.pos[1]);
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "#EFEFEF";
+  ctx.stroke();
 };
 
 module.exports = Swinger;

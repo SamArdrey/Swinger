@@ -4,7 +4,7 @@ const Platform = require('./platform');
 Game.BG_COLOR = "#000000";
 Game.DIM_X = 1000;
 Game.DIM_Y = 600;
-Game.FPS = 32;
+Game.FPS = 60;
 
 function Game() {
   this.level = 1;
@@ -32,14 +32,14 @@ Game.prototype.moveObjects = function moveObjects(delta) {
 
 Game.prototype.checkCollisions = function checkCollisions() {
   let radius = this.swinger[0].radius;
-  let swingPos = [this.swinger[0].pos[0] + radius, this.swinger[0].pos[1] +radius];
+  let swingPos = [this.swinger[0].pos[0] + radius, this.swinger[0].pos[1] + radius];
   let topEdge  = Object.assign(this.platform[0].top);
   let leftEdge = Object.assign(this.platform[0].leftSide);
   let stopFirstStatement = false;
 
-  if (swingPos[0] + radius >= topEdge[0][0] + 30 &&
-      swingPos[1] + radius >= topEdge[0][1] &&
-      // swingPos[1] + radius <= topEdge[0][1] + 15 &&
+  if (swingPos[0]>= topEdge[0][0] + 25 &&
+      swingPos[1]>= topEdge[0][1] - 15 &&
+      // swingPos[1]<= topEdge[0][1] + 15 &&
       !stopFirstStatement) {
       this.swinger[0].velocity[1] = -(this.swinger[0].velocity[1]);
       stopFirstStatement = true;

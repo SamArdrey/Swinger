@@ -1,5 +1,5 @@
 function Platform(options) {
-  this.length = 600 / options.level;
+  this.length = 500 / options.level;
   this.height = 50 + (Math.random() * 200);
   this.dimX = options.dimX;
   this.dimY = options.dimY;
