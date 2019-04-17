@@ -8,23 +8,32 @@
   <link rel="stylesheet" href="../assets/stylesheet.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
   <script type="application/javascript" src="./main.js"></script>
   <script type="application/javascript" src="../vendor/keymaster.js"></script>
 </head>
 <body>
-  <div>
+  <header>
+    <div class='title'>Swinger</div>
+    <div class="level">Level 1</div>
+  </header>
+  <div class="body-container">
 
-  </div>
-  <div class="canvas-container">
-    <canvas id="game-canvas" />
+    <div class='sidebar'>
+      <p>Press Spacebar to jump off the rope</p>
+      <p>Land on the platform to advance!</p>
+      <p class="links-container">
+        <a class='links' target='_blank' href="https://github.com/SamArdrey/Swinger">
+          <i class="fa fa-github"></i> Github
+        </a>
+        <a class='links' target='_blank' href="www.linkedin.com/in/sam-ardrey">
+          <i class="fa fa-linkedin-square"></i> LinkedIn
+        </a>
+      </p>
+    </div>
+    <div class="canvas-container">
+      <canvas id="game-canvas" />
+    </div>
   </div>
 </body>
-<footer>
-  <a class='links' target='_blank' href="https://github.com/SamArdrey/Swinger">
-    <i class="fa fa-github"></i> Github
-  </a>
-  <a class='links' target='_blank' href="www.linkedin.com/in/sam-ardrey">
-    <i class="fa fa-linkedin-square"></i> LinkedIn
-  </a>
-</footer>
 </html>
