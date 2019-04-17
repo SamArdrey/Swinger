@@ -1,0 +1,13 @@
+body {
+  background: black;
+  height: 100%;
+  /* margin: 0;
+  overflow: hidden;
+  width: 100%; */
+}
+
+.canvas-container {
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}

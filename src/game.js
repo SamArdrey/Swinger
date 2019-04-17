@@ -57,6 +57,38 @@ Game.prototype.draw = function draw(ctx) {
   this.allObjects().forEach(function(object) {
     object.draw(ctx);
   });
+  
+  this.drawOutline(ctx);
+};
+
+Game.prototype.drawOutline = function drawOutline(ctx) {
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, Game.DIM_Y);
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "pink";
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(Game.DIM_X, 0);
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "pink";
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(Game.DIM_X, 0);
+  ctx.lineTo(Game.DIM_X, Game.DIM_Y);
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "pink";
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(0, Game.DIM_Y);
+  ctx.lineTo(Game.DIM_X, Game.DIM_Y);
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "pink";
+  ctx.stroke();
 };
 
 Game.prototype.allObjects = function allObjects() {
