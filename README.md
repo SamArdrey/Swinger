@@ -14,4 +14,4 @@ A game for those of us who love to swing. Land on the platform to advance to the
 * The game moves to the next level if the player lands on the platform and restarts if they miss.
 
 ## Physics
-Used real-world physics formulas to 
+Used real-world physics formulas to
