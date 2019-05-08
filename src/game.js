@@ -1,5 +1,6 @@
 const Swinger = require('./swinger');
 const Platform = require('./platform');
+const CollisionStatus = require('./collision');
 
 Game.BG_COLOR = "#000000";
 Game.DIM_X = 1000;
@@ -19,6 +20,8 @@ function Game() {
     dimY: Game.DIM_Y,
     level: this.level
   })];
+
+  this.collisionStatus = new CollisionStatus(this.swinger, this.platform, false);
 }
 
 Game.prototype.step = function step(delta) {
@@ -30,24 +33,7 @@ Game.prototype.moveObjects = function moveObjects(delta) {
   this.swinger[0].move(delta, this.stop);
 };
 
-Game.prototype.checkCollisions = function checkCollisions() {
-  let radius = this.swinger[0].radius;
-  let swingPos = [this.swinger[0].pos[0] + radius, this.swinger[0].pos[1] + radius];
-  let topEdge  = Object.assign(this.platform[0].top);
-  let leftEdge = Object.assign(this.platform[0].leftSide);
-  let stopFirstStatement = false;
-
-  if (swingPos[0]>= topEdge[0][0] + 25 &&
-      swingPos[1]>= topEdge[0][1] - 15 &&
-      // swingPos[1]<= topEdge[0][1] + 15 &&
-      !stopFirstStatement) {
-      this.swinger[0].velocity[1] = -(this.swinger[0].velocity[1]);
-      stopFirstStatement = true;
-  } else if (swingPos[0] >= leftEdge[0][0] &&
-             swingPos[1] >= leftEdge[0][1]) {
-    this.swinger[0].velocity[0] = -(this.swinger[0].velocity[0]);
-  }
-};
+Game.prototype.checkCollisions = this.collisionStatus.checkCollisions();
 
 Game.prototype.draw = function draw(ctx) {
   ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
@@ -57,7 +43,7 @@ Game.prototype.draw = function draw(ctx) {
   this.allObjects().forEach(function(object) {
     object.draw(ctx);
   });
-  
+
   this.drawOutline(ctx);
 };
 
