@@ -1,6 +1,7 @@
 function Platform(options) {
   this.length = 500 / options.level;
   this.height = 50 + (Math.random() * 200);
+  // this.distFromWall = (Math.random() * 50);
   this.dimX = options.dimX;
   this.dimY = options.dimY;
   this.color = "#FFFFFF";

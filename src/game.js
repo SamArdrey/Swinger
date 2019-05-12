@@ -10,7 +10,6 @@ Game.FPS = 60;
 function Game() {
   this.level = 1;
   this.stop = false;
-
   this.swinger = [new Swinger({
     game: this
   })];
@@ -20,12 +19,11 @@ function Game() {
     dimY: Game.DIM_Y,
     level: this.level
   })];
-
   this.collisionStatus = new CollisionStatus(this.swinger, this.platform, false);
 }
 
 Game.prototype.step = function step(delta) {
-  this.checkCollisions();
+  this.collisionStatus.checkCollision();
   this.moveObjects(delta);
 };
 
@@ -33,7 +31,7 @@ Game.prototype.moveObjects = function moveObjects(delta) {
   this.swinger[0].move(delta, this.stop);
 };
 
-Game.prototype.checkCollisions = this.collisionStatus.checkCollisions();
+// Game.prototype.checkCollisions = this.collisionStatus.checkCollisions();
 
 Game.prototype.draw = function draw(ctx) {
   ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
