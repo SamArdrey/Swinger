@@ -30,7 +30,7 @@ Game.prototype.step = function step(delta) {
 Game.prototype.moveObjects = function moveObjects(delta) {
   this.swinger[0].move(delta, this.stop);
 };
-
+        
 // Game.prototype.checkCollisions = this.collisionStatus.checkCollisions();
 
 Game.prototype.draw = function draw(ctx) {
