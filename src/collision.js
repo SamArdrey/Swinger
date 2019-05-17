@@ -9,7 +9,7 @@ CollisionStatus.prototype.checkCollision = function checkCollision() {
   let ballPosition = [this.swinger[0].pos[0] + radius, this.swinger[0].pos[1] + radius];
   let topEdge  = Object.assign(this.platform[0].topEdge);
   let leftEdge = Object.assign(this.platform[0].leftEdge);
-
+ 
   if (ballPosition[0] >= topEdge[0][0] +25 &&
       ballPosition[1] >= topEdge[0][1] -15 &&
       ballPosition[0] <= topEdge[1][0] +25 &&
