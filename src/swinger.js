@@ -4,12 +4,12 @@ const MovingObject = require('./moving_object');
 Swinger.RADIUS = 15;
 function Swinger(options) {
   options.radius = Swinger.RADIUS;
-  options.color = "#EFEFEF";
+  options.color = "#66ffcc";
 
   this.armLength = 150;
   //angular velocity
   this.aVelocity = 0.0;
-  this.gravity = 0.4;
+  this.gravity = 0.335;
   this.angle = -Math.PI/3;
   //angular accelleration
   this.aAccelleration = 0.0;
@@ -54,8 +54,8 @@ Swinger.prototype.getNextPos = function getNextPos(timeDelta, stop) {
 
     // change the number at the end to change the distance at which the ball
     // moves after released from the swing
-    this.velocity[0] = -this.aVelocity * Math.sin((-Math.PI/2)+this.angle) * 24;
-    this.velocity[1] = -this.aVelocity * Math.cos((-Math.PI/2)+this.angle) * 24;
+    this.velocity[0] = -this.aVelocity * Math.sin((-Math.PI/2)+this.angle) * 28;
+    this.velocity[1] = -this.aVelocity * Math.cos((-Math.PI/2)+this.angle) * 28;
 
     //increment angle
     this.angle += this.aVelocity;
@@ -67,12 +67,12 @@ Swinger.prototype.getNextPos = function getNextPos(timeDelta, stop) {
 };
 
 Swinger.prototype.draw = function draw(ctx) {
+  if (this._type === "swinging") this.drawLine(ctx);
+
   ctx.fillStyle = this.color;
   ctx.beginPath();
   ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true);
   ctx.fill();
-
-  if (this._type === "swinging") this.drawLine(ctx);
 };
 
 Swinger.prototype.drawLine = function drawLine(ctx) {

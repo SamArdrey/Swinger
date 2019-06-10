@@ -65,6 +65,9 @@ Game.prototype.checkIfOutOfBounds = function checkIfOutOfBounds() {
 };
 
 Game.prototype.draw = function draw(ctx) {
+  let level = document.getElementsByClassName('level')[0];
+  level.innerHTML = `Level: ${this.level}`;
+
   ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
   ctx.fillStyle = Game.BG_COLOR;
   ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
