@@ -7,6 +7,8 @@ body {
   background: black;
   height: 100%;
   margin: 0;
+  margin-right: auto;
+  margin-left: auto;
   overflow: hidden;
   width: 100%;
 }
@@ -20,8 +22,9 @@ body {
 .canvas-container {
   display: flex;
   flex-direction: row;
-  margin-left: 2%;
+  margin-left: auto;
   margin-right: auto;
+  margin-top: auto;
 }
 
 header {
@@ -29,9 +32,8 @@ header {
   display: flex;
   flex-direction: column;
   font-size: 40px;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 15px;
+  margin-top: 2%;
 }
 
 .title {
@@ -57,7 +59,8 @@ header {
 .sidebar{
   color: white;
   font-size: 40px;
-  margin-left: 2%;
+  margin-left: auto;
+  margin-top: 4%;
   padding-top: 2%;
   text-align: center;
   width: 20%;

@@ -38,7 +38,7 @@ Swinger.prototype.move = function move(delta, stop) {
 Swinger.prototype.getNextPos = function getNextPos(timeDelta, stop) {
   if (this._type === "falling") {
     //change the number at the end to speed up or slow down ball movement
-    this.velocity = [this.velocity[0], this.velocity[1] + (this.gravity * timeDelta)/100];
+    this.velocity = [this.velocity[0], this.velocity[1] + (this.gravity * timeDelta)/125];
 
     this.pos = [
       this.pos[0] + this.velocity[0] * timeDelta,
@@ -71,7 +71,7 @@ Swinger.prototype.draw = function draw(ctx) {
   ctx.beginPath();
   ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true);
   ctx.fill();
-  
+
   if (this._type === "swinging") this.drawLine(ctx);
 };
 

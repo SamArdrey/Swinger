@@ -8,12 +8,6 @@ function MovingObject(options) {
   this.color = options.color;
 
   this.game = options.game;
-
-  //This is for future effects.
-  //Once the game gets harder,
-  //gravity changes and so does wind.
-  // this.gravity = options.gravity;
-  this.wind = options.wind;
 }
 
 MovingObject.prototype.isCollidedWith = function isCollidedWith(otherObject) {

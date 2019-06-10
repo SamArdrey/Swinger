@@ -7,31 +7,62 @@ Game.DIM_X = 1000;
 Game.DIM_Y = 600;
 Game.FPS = 60;
 
-function Game() {
-  this.level = 1;
+function Game(level = 1) {
+  this.level = level;
   this.stop = false;
-  this.swinger = [new Swinger({
-    game: this
-  })];
+  this.newBoardObjects();
+}
+
+Game.prototype.newBoardObjects = function newBoardObjects() {
+  this.newSwingerObject();
+  this.newPlatformObject();
+  this.newCollisionObject();
+};
+
+Game.prototype.newPlatformObject = function newPlatformObject() {
   this.platform = [new Platform({
     game: this,
     dimX: Game.DIM_X,
     dimY: Game.DIM_Y,
     level: this.level
   })];
-  this.collisionStatus = new CollisionStatus(this.swinger, this.platform, false);
-}
+};
+
+Game.prototype.newSwingerObject = function newSwingerObject() {
+  this.swinger = [new Swinger({
+    game: this
+  })];
+};
+
+Game.prototype.newCollisionObject = function newCollisionObject() {
+  this.collisionStatus = new CollisionStatus(
+    this.swinger,
+    this.platform,
+    false,
+    Game.DIM_X,
+    Game.DIM_Y);
+};
 
 Game.prototype.step = function step(delta) {
   this.collisionStatus.checkCollision();
   this.moveObjects(delta);
+  this.checkIfOutOfBounds();
 };
 
 Game.prototype.moveObjects = function moveObjects(delta) {
   this.swinger[0].move(delta, this.stop);
 };
-        
-// Game.prototype.checkCollisions = this.collisionStatus.checkCollisions();
+
+Game.prototype.checkIfOutOfBounds = function checkIfOutOfBounds() {
+  if (this.collisionStatus.outOfBounds() &&
+      this.collisionStatus.landedOnPlatform) {
+    this.level++;
+    this.newBoardObjects();
+  } else if (this.collisionStatus.outOfBounds()) {
+    this.level = 1;
+    this.newBoardObjects();
+  }
+};
 
 Game.prototype.draw = function draw(ctx) {
   ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
