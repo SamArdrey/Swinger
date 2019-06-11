@@ -17,12 +17,6 @@ body {
   cursor: pointer;
 }
 
-
-
-.fa-volume-up:before {
-
-}
-
 .body-container {
   display: flex;
   flex-direction: row;

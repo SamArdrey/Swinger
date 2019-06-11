@@ -53,9 +53,6 @@ Game.prototype.newCollisionObject = function newCollisionObject() {
 };
 
 Game.prototype.step = function step(delta) {
-  // if (!this.muted) {
-  //   this.soundTrack.play();
-  // }
   this.collisionStatus.checkCollision(this.muted);
   this.moveObjects(delta);
   this.checkIfOutOfBounds();
