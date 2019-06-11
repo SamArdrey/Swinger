@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let mute = document.getElementById('mute');
   let muted = false;
 
-  const game = new Game(bounce, soundTrack);
+  const game = new Game(bounce);
   new GameView(game, ctx, soundTrack).start();
 
   mute.addEventListener('click', () => {

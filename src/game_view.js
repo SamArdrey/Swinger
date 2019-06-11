@@ -1,7 +1,6 @@
-function GameView(game, ctx, soundTrack) {
+function GameView(game, ctx) {
   this.ctx = ctx;
   this.game = game;
-  this.soundTrack = soundTrack;
 }
 
 GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
