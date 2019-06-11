@@ -7,9 +7,13 @@ Game.DIM_X = 1000;
 Game.DIM_Y = 600;
 Game.FPS = 60;
 
-function Game(level = 1) {
-  this.level = level;
+function Game(bounce, soundTrack) {
+  this.level = 1;
   this.stop = false;
+  this.bounce = bounce;
+  this.muted = false;
+  this.soundTrack = soundTrack;
+
   this.newBoardObjects();
 }
 
@@ -17,6 +21,9 @@ Game.prototype.newBoardObjects = function newBoardObjects() {
   this.newSwingerObject();
   this.newPlatformObject();
   this.newCollisionObject();
+  if (!this.muted) {
+    this.soundTrack.play();
+  }
 };
 
 Game.prototype.newPlatformObject = function newPlatformObject() {
@@ -40,11 +47,16 @@ Game.prototype.newCollisionObject = function newCollisionObject() {
     this.platform,
     false,
     Game.DIM_X,
-    Game.DIM_Y);
+    Game.DIM_Y,
+    this.bounce);
+
 };
 
 Game.prototype.step = function step(delta) {
-  this.collisionStatus.checkCollision();
+  // if (!this.muted) {
+  //   this.soundTrack.play();
+  // }
+  this.collisionStatus.checkCollision(this.muted);
   this.moveObjects(delta);
   this.checkIfOutOfBounds();
 };

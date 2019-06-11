@@ -5,9 +5,10 @@ function CollisionStatus(swinger, platform, stopFirstStatement, dimX, dimY) {
   this.landedOnPlatform = false;
   this.dimX = dimX;
   this.dimY = dimY;
+  this.bounce = bounce;
 }
 
-CollisionStatus.prototype.checkCollision = function checkCollision() {
+CollisionStatus.prototype.checkCollision = function checkCollision(muted) {
   let radius = this.swinger[0].radius;
   let ballPosition = [this.swinger[0].pos[0] + radius, this.swinger[0].pos[1] + radius];
   let topEdge  = Object.assign(this.platform[0].topEdge);
@@ -20,13 +21,13 @@ CollisionStatus.prototype.checkCollision = function checkCollision() {
     this.swinger[0].velocity[1] = -(this.swinger[0].velocity[1]);
     this.stopFirstStatement = true;
     this.landedOnPlatform = true;
-
+    this.makeSound(muted);
   } else if (ballPosition[0] >= leftEdge[0][0] &&
              ballPosition[1] >= leftEdge[0][1] &&
              ballPosition[0] <= topEdge[1][0] &&
              !this.landedOnPlatform) {
     this.swinger[0].velocity[0] = -(this.swinger[0].velocity[0]);
-
+    this.makeSound(muted);
   } else {
     //This line allows for bouncing the ball. Without it,
     //upon landing on the platform a second time,
@@ -34,6 +35,13 @@ CollisionStatus.prototype.checkCollision = function checkCollision() {
     // since you will hit the next level at that point, it's nice
     // to have in case I add features later on
     this.stopFirstStatement = false;
+  }
+};
+
+CollisionStatus.prototype.makeSound = function makeSound(muted) {
+  if (!muted) {
+    this.bounce.currentTime = 0;
+    this.bounce.play();
   }
 };
 

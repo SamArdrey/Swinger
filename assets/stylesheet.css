@@ -13,6 +13,16 @@ body {
   width: 100%;
 }
 
+#mute, #unmute {
+  cursor: pointer;
+}
+
+
+
+.fa-volume-up:before {
+
+}
+
 .body-container {
   display: flex;
   flex-direction: row;

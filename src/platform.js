@@ -19,7 +19,7 @@ function Platform(options) {
 
 Platform.prototype.move = function move() {};
 
-Platform.prototype.draw = function draw(ctx, level = 1) {
+Platform.prototype.draw = function draw(ctx) {
   ctx.fillStyle = this.color;
   ctx.fillRect(this.dimX-this.distFromWall, this.dimY, -this.length, -this.height);
 };

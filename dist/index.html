@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,10 +13,23 @@
   <script type="application/javascript" src="../vendor/keymaster.js"></script>
 </head>
 <body>
+  <audio id='bounce' play>
+    <source src='../assets/bounce-effect.wav' >
+  </audio>
+
+  <audio id='sound-track' loop play>
+    <source src='../assets/MissionImpossibleTheme.mp3' >
+  </audio>
   <header>
-    <div class='title'>Swinger</div>
-    <div class="level">Level 1</div>
+    <div class='title'>
+      Swinger
+      <!-- <i id='unmute' class="fas fa-volume-up"></i> -->
+      <i id='mute' class="fas fa-volume-mute"></i>
+    </div>
+    <div class="level"></div>
   </header>
+
+
   <div class="body-container">
 
     <div class='sidebar'>
