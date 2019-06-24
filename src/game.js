@@ -89,32 +89,18 @@ Game.prototype.draw = function draw(ctx) {
 };
 
 Game.prototype.drawOutline = function drawOutline(ctx) {
-  ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.lineTo(0, Game.DIM_Y);
   ctx.lineWidth = 5;
   ctx.strokeStyle = "pink";
-  ctx.stroke();
+  this.drawLine(ctx, 0, 0, 0, Settings.DIM_Y)
+  this.drawLine(ctx, 0, 0, Settings.DIM_Y, 0)
+  this.drawLine(ctx, Settings.DIM_X, 0, Settings.DIM_X, Settings.DIM_Y)
+  this.drawLine(ctx, 0, Settings.DIM_Y, Settings.DIM_X, Settings.DIM_Y)
+};
 
+Game.prototype.drawLine = function drawLine(ctx, moveX, moveY, lineX, lineY) {
   ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.lineTo(Game.DIM_X, 0);
-  ctx.lineWidth = 5;
-  ctx.strokeStyle = "pink";
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.moveTo(Game.DIM_X, 0);
-  ctx.lineTo(Game.DIM_X, Game.DIM_Y);
-  ctx.lineWidth = 5;
-  ctx.strokeStyle = "pink";
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.moveTo(0, Game.DIM_Y);
-  ctx.lineTo(Game.DIM_X, Game.DIM_Y);
-  ctx.lineWidth = 5;
-  ctx.strokeStyle = "pink";
+  ctx.moveTo(moveX, moveY);
+  ctx.lineTo(lineX, lineY);
   ctx.stroke();
 };
 
