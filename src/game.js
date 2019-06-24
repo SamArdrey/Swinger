@@ -91,10 +91,10 @@ Game.prototype.draw = function draw(ctx) {
 Game.prototype.drawOutline = function drawOutline(ctx) {
   ctx.lineWidth = 5;
   ctx.strokeStyle = "pink";
-  this.drawLine(ctx, 0, 0, 0, Settings.DIM_Y)
-  this.drawLine(ctx, 0, 0, Settings.DIM_Y, 0)
-  this.drawLine(ctx, Settings.DIM_X, 0, Settings.DIM_X, Settings.DIM_Y)
-  this.drawLine(ctx, 0, Settings.DIM_Y, Settings.DIM_X, Settings.DIM_Y)
+  this.drawLine(ctx, 0, 0, 0, Settings.DIM_Y);
+  this.drawLine(ctx, 0, 0, Settings.DIM_Y, 0);
+  this.drawLine(ctx, Settings.DIM_X, 0, Settings.DIM_X, Settings.DIM_Y);
+  this.drawLine(ctx, 0, Settings.DIM_Y, Settings.DIM_X, Settings.DIM_Y);
 };
 
 Game.prototype.drawLine = function drawLine(ctx, moveX, moveY, lineX, lineY) {
